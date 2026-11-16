@@ -8,7 +8,7 @@ AI Agent 评测数据集（基准测试）的介绍与使用指南。
 
 | 编号 | 数据集 | 一句话简介 | 文档 |
 |------|--------|-----------|------|
-| 1 | Terminal-Bench | 终端智能体基准：在真实终端沙箱中从头到尾完成复杂工程任务 | [datasets/terminal-bench.md](datasets/terminal-bench.md) |
+| 1 | Terminal-Bench | 终端智能体基准：在真实终端沙箱中从头到尾完成复杂工程任务 | [datasets/01-terminal-bench.md](datasets/01-terminal-bench.md) |
 | 2 | DeepSWE | 待补充 | - |
 | 3 | Agents' Last Exam | 待补充 | - |
 | 4 | AutomationBench | 待补充 | - |
