@@ -83,7 +83,7 @@ curl http://localhost:11434        # 返回 "Ollama is running" 即正常
 
 # Linux 环境得有 uv、docker-compose 等工具
 
-# 装 Harbor、先单任务试水
+# 装 Harbor、单任务试水
 uv tool install harbor
 
 # 测试执行命令
