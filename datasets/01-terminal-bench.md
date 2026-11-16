@@ -35,7 +35,7 @@ Terminal-Bench 4.0 测的是：AI 智能体能不能像工程师一样，在真�
 
 ## 1.3 数据样式
 
-比如 Vllm-deepseek 任务：
+比如 Vllm-deepseek 任务：https://hub.harborframework.com/tasks/terminal-bench/vllm-deepseek-streaming
 
 ![Vllm-deepseek 任务目录结构](../files/1-3.png)
 
