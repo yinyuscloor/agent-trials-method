@@ -11,6 +11,6 @@ AI Agent 评测数据集（基准测试）的介绍与使用指南。
 | 1 | Terminal-Bench | 终端智能体基准：在真实终端沙箱中从头到尾完成复杂工程任务 | [datasets/01-terminal-bench.md](datasets/01-Terminal-Bench.md) |
 | 2 | DeepSWE | 编码智能体基准：113 个原创长周期任务，通过行为验证评估真实仓库修改 | [datasets/02-DeepSWE.md](datasets/02-DeepSWE.md) |
 | 3 | Agents' Last Exam | 通用计算机使用智能体基准：在真实职业软件环境中完成 GUI 与 CLI 交织的长周期任务 | [datasets/03-Agents-Last-Exam.md](datasets/03-Agents-Last-Exam.md) |
-| 4 | AutomationBench | 待补充 | - |
+| 4 | AutomationBench | 业务流自动化基准：在 47 个模拟 SaaS 应用中完成跨系统工作流并按终态断言评分 | [datasets/04-AutomationBench.md](datasets/04-AutomationBench.md) |
 | 5 | HLE w/ Tools | 带工具使用的人类最后考试 | - |
 | 6 | GDPVal-AA v2 | 待补充 | - |
