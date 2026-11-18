@@ -101,3 +101,5 @@ harbor run \
 ```bash
 harbor view jobs
 ```
+
+![交互式查看结果](../files/1-5.png)
