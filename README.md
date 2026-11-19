@@ -13,4 +13,4 @@ AI Agent 评测数据集（基准测试）的介绍与使用指南。
 | 3 | Agents' Last Exam | 通用计算机使用智能体基准：在真实职业软件环境中完成 GUI 与 CLI 交织的长周期任务 | [datasets/03-Agents-Last-Exam.md](datasets/03-Agents-Last-Exam.md) |
 | 4 | AutomationBench | 业务流自动化基准：在 47 个模拟 SaaS 应用中完成跨系统工作流并按终态断言评分 | [datasets/04-AutomationBench.md](datasets/04-AutomationBench.md) |
 | 5 | HLE w/Tools | 学术天花板基准的开卷配置：共用 HLE 题库，允许联网搜索与代码执行 | [datasets/05-HLE-w-Tools.md](datasets/05-HLE-w-Tools.md) |
-| 6 | GDPVal-AA v2 | 待补充 | - |
+| 6 | GDPVal-AA v2 | 知识工作交付基准：通过多模型盲评与 Elo 评估真实职业交付物的相对质量 | [datasets/06-GDPVal-AA-v2.md](datasets/06-GDPVal-AA-v2.md) |
