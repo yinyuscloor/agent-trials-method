@@ -36,7 +36,7 @@ DeepSWE 测的是**智能体式编码（agentic coding）而非代码生成**：
 
 ![DeepSWE 任务目录结构](../files/2-3.png)
 
-本地复现用官方 runner **pier**（`uv tool install datacurve-pier`），可驱动 mini-swe-agent 或 claude-code、codex 等 CLI agent，跑在本地 Docker 或 Modal 沙箱。
+具体参考 [01-terminal-bench.md](./01-Terminal-Bench.md)
 
 ## 2.4 评测流程
 
