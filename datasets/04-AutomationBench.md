@@ -45,9 +45,16 @@ automationbench/domains/
 └── simple/       tasks.py   # 408 KB：200 道不计分的热身题
 ```
 
-每道题就是文件里的一个 Python 数据结构：`prompt`（触发消息）、初始状态播种、可用工具范围、`assertions` 列表。`_noise.py` 就是之前说的“埋脏数据”那部分——让环境里存在相似名字、格式不一的干扰项。
+每道题就是文件里的一个 Python 数据结构：`prompt`（触发消息）、初始状态播种、可用工具范围、`assertions` 列表。`_noise.py` 就是之前说的“埋脏数据”那部分——让环境里存在相似名字、格式不一的干扰项,以 https://github.com/zapier/AutomationBench/blob/main/automationbench/domains/finance/tasks.py 为例
 
-![AutomationBench 任务目录与数据结构](../files/4-3.png)
+原题：`tasks.py`内
+
+![原题](../files/4-6.png)
+
+输出：
+
+- 输出不是文件，而是评测进程内存里的 WorldState 对象：Agent 的工具调用不断改写它（表格加了哪些行、邮件发给了谁），跑完后是答卷。
+- 判分时 runner.py 把任务里的约 10 条断言交给 rubric/ 下的断言模块逐条核对最终状态，全过才算通过。
 
 ## 4.4 评测流程
 
