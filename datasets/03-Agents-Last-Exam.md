@@ -57,11 +57,67 @@ agents-last-exam/
 
 **单个任务 = 一个可执行的 main.py**。
 
-以 `tasks/demo/hello/`（[main.py](https://github.com/rdi-berkeley/agents-last-exam/blob/main/tasks/demo/hello/main.py)）为例，`main.py` 用 `cua_bench` 框架写成，固定三段式：
+以 `tasks/demo/hello/`（[`main.py`](https://github.com/rdi-berkeley/agents-last-exam/blob/main/tasks/demo/hello/main.py)）为例，`main.py` 用 `cua_bench` 框架写成，固定三段式：
 
 - **TaskConfig**：声明路径和任务描述。hello 任务的指令大意：“用桌面 GUI（截图、点击、打字）操作一个网页订单应用，把生成的确认码写到 `output/result.txt`”——并明确提示答案从文件里拿不到，必须用 GUI。
 - **setup_task()**：环境准备钩子——清空输出目录、校验框架预置的输入文件就位。
 - **evaluate(task_cfg, session) -> list[float]**：评分函数——读 agent 写的 `result.txt` 与解密后的参考答案精确比对，对得 1.0、错得 0.0（输出读不到也是 0.0）。
+
+原题：
+
+- `main.py` 里的 `task_description`
+    ```python
+        @property
+        def task_description(self) -> str:
+            return (
+                "Acme Code Generator — a GUI task. Use the desktop GUI (screenshot, "
+                "click, type) to generate a confirmation code in a web app; the "
+                "answer cannot be obtained from files alone.\n\n"
+                f"1. Open the app: run `bash {self.launcher_path}` to launch Chrome "
+                f"on it, or open {self.app_path} in Chrome yourself.\n"
+                f"2. Read {self.order_path} to get the Order ID.\n"
+                "3. In the app: click the \"Order ID\" field, type the Order ID, "
+                "then click \"Generate Code\".\n"
+                "4. The app displays a confirmation code (CONF-...). Read it from "
+                "the screen.\n"
+                f"5. Write that code, exactly, on a single line, to "
+                f"{self.result_path}.\n\n"
+                f"See {self.instructions_path} for the same steps. The code is "
+                "computed by the app from the Order ID you type, so you must use "
+                "the GUI."
+            )
+    ```
+- 配套环境：一台 Ubuntu 桌面 VM，里面预装了 Chrome、`app.html`（一个订单录入网页）、`order.json`（订单数据）、`launch.sh`（启动脚本）。
+
+输出：
+
+- Agent 要交的：`output/result.txt`，一行确认码，例如 `CONF-3f9a1c`。这个码任何文件里都没有，只能通过 GUI 输入 Order ID、点按钮、从屏幕上读出来——所以这题本质是考 GUI 操作能力。
+- 判分器的输出：`evaluate()` 把 `result.txt` 和判分前才解密投放的 `reference/result.txt` 逐字符比对，相等返回 `[1.0]`，不等或文件读不到返回 `[0.0]`。没有部分分。
+
+`task_card.json` 元数据：
+
+```json
+    {
+    "taskId": "demo/hello",          // 任务唯一 ID，格式「行业簇/任务名」，对应 tasks/ 下的目录路径
+    "title": "Demo: Acme Code Generator (GUI)",
+                                    // 人类可读标题，展示在任务库/排行榜上，Agent 看不到
+    "summary": "Minimal GUI demo...",// 人类可读的任务简介（检索和浏览用）
+                                    // ★ 注意这不是题面：本题题面在 main.py 的
+                                    //   task_description 里；Agent 永远读不到 summary
+    "category": "demo",              // 所属行业簇。真实任务是 13 个职业簇之一
+                                    // （business_finance、legal 等），demo 是演示专用
+    "vm": {
+        "snapshot": "cpu-free-ubuntu", // 用哪个 VM 镜像启动：无 GPU 的 Ubuntu 快照，
+                                    // 里面已预装 Chrome 和本题数据（input/、software/）
+        "vcpus": 4,                    // ┐
+        "memory_gb": 16,               // ├ VM 资源配置，框架 provisioning 沙箱时按此开机器
+        "disk_gb": 200,                // ┘（对比 Terminal-Bench 常见 2 核 4G，ALE 明显更重，
+                                    //   因为要跑真实桌面环境）
+        "timeout_s": 1800              // 任务总时限 30 分钟（含 setup + Agent 运行 + 判分）；
+                                    // demo 题短，真实职业任务普遍 1~2 小时起
+        }
+    }
+```
 
 ## 3.4 评测流程
 
