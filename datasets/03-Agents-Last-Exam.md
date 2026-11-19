@@ -55,13 +55,13 @@ agents-last-exam/
 └── docs/  assets/  scripts/  releases/
 ```
 
-**单个任务 = 一个可执行的 `main.py`**。
+**单个任务 = 一个可执行的 main.py**。
 
 以 `tasks/demo/hello/`（[main.py](https://github.com/rdi-berkeley/agents-last-exam/blob/main/tasks/demo/hello/main.py)）为例，`main.py` 用 `cua_bench` 框架写成，固定三段式：
 
-- **`TaskConfig`**：声明路径和任务描述。hello 任务的指令大意：“用桌面 GUI（截图、点击、打字）操作一个网页订单应用，把生成的确认码写到 `output/result.txt`”——并明确提示答案从文件里拿不到，必须用 GUI。
-- **`setup_task()`**：环境准备钩子——清空输出目录、校验框架预置的输入文件就位。
-- **`evaluate(task_cfg, session) -> list[float]`**：评分函数——读 agent 写的 `result.txt` 与解密后的参考答案精确比对，对得 1.0、错得 0.0（输出读不到也是 0.0）。
+- **TaskConfig**：声明路径和任务描述。hello 任务的指令大意：“用桌面 GUI（截图、点击、打字）操作一个网页订单应用，把生成的确认码写到 `output/result.txt`”——并明确提示答案从文件里拿不到，必须用 GUI。
+- **setup_task()**：环境准备钩子——清空输出目录、校验框架预置的输入文件就位。
+- **evaluate(task_cfg, session) -> list[float]**：评分函数——读 agent 写的 `result.txt` 与解密后的参考答案精确比对，对得 1.0、错得 0.0（输出读不到也是 0.0）。
 
 ## 3.4 评测流程
 

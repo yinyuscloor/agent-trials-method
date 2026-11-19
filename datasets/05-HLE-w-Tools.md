@@ -33,12 +33,12 @@ w/Tools 配置把考察目标换成 **agent 的检索与工具编排能力**：�
 
 数据形式最轻量——没有仓库、没有容器、没有测试脚本，就是 Hugging Face 上一份“题目 + 标准答案”的问答对数据集。每条记录一行：
 
-- **`id`**：题目 ID。
-- **`question`**：题面文本（多模态题另有 `image` 字段）。
-- **`answer`**：封闭形式标准答案（选项字母或精确匹配短答案）。
-- **`answer_type`**：`multipleChoice` 或 `exactMatch`，决定判分方式。
-- **`subject` / `category`**：学科分类。
-- **`canary`**：防污染标记串。
+- **id**：题目 ID。
+- **question**：题面文本（多模态题另有 `image` 字段）。
+- **answer**：封闭形式标准答案（选项字母或精确匹配短答案）。
+- **answer_type**：`multipleChoice` 或 `exactMatch`，决定判分方式。
+- **subject / category**：学科分类。
+- **canary**：防污染标记串。
 
 工具栈、harness、判分器全不随数据发布——w/Tools 的工具环境由各评测方自己搭。
 

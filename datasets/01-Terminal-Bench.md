@@ -41,12 +41,12 @@ Terminal-Bench 4.0 测的是：AI 智能体能不能像工程师一样，在真�
 
 每个任务就是仓库里的一个目录（Harbor 任务格式），主要包含：
 
-- **`instruction.md`**：极简自然语言任务描述（几百字节到 1KB，只说现象和目标，不给定位线索，末尾附时限与反作弊声明）
-- **`task.toml`**：元数据与配置——领域 / 子领域分类（如 ML/Inference、Operations/Claims）、资源配额（CPU / 内存 / GPU）、agent 超时（统一 8 小时）、验证模式、产物收集路径、任务版本号
-- **`environment/`**：环境定义，简单任务是一个 Dockerfile（如装了真实 vLLM 镜像），复杂任务是多容器网络 + 浏览器 MCP 服务
-- **`solution/`**：人工参考解（solve.sh + solve.patch），CI 用它验证任务本身可解
-- **`tests/`**：隐藏验证器——独立容器里运行的确定性 pytest 断言，0/1 计分，依赖用 uv.lock 锁定，且带防退化用例（防止"永远返回 None"式偷懒修复）
-- **`README.md`**：给人看的说明——难度解释、官方解法、验证逻辑、作者背景
+- **instruction.md**：极简自然语言任务描述（几百字节到 1KB，只说现象和目标，不给定位线索，末尾附时限与反作弊声明）
+- **task.toml**：元数据与配置——领域 / 子领域分类（如 ML/Inference、Operations/Claims）、资源配额（CPU / 内存 / GPU）、agent 超时（统一 8 小时）、验证模式、产物收集路径、任务版本号
+- **environment/**：环境定义，简单任务是一个 Dockerfile（如装了真实 vLLM 镜像），复杂任务是多容器网络 + 浏览器 MCP 服务
+- **solution/**：人工参考解（solve.sh + solve.patch），CI 用它验证任务本身可解
+- **tests/**：隐藏验证器——独立容器里运行的确定性 pytest 断言，0/1 计分，依赖用 uv.lock 锁定，且带防退化用例（防止"永远返回 None"式偷懒修复）
+- **README.md**：给人看的说明——难度解释、官方解法、验证逻辑、作者背景
 
 因为要覆盖非编码领域，任务产物（agent 要交付、被验证的东西）的文件类型非常多样：
 
